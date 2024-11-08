@@ -1,13 +1,16 @@
 package com.semih;
 
-import org.junit.jupiter.api.Test;
+import com.semih.starter.CarGalleryApplication;
+import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+@SpringBootTest(classes = CarGalleryApplication.class)
 class CarGalleryApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void Test(){
+		System.out.println("Hello World");
 	}
-
 }

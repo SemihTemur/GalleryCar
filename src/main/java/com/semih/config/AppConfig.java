@@ -20,16 +20,21 @@ import java.util.Optional;
 @Configuration
 public class AppConfig {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public AppConfig(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Bean
-    public UserDetailsService userDetailsService(){
+    public UserDetailsService userDetailsService() {
         return new UserDetailsService() {
+
             @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
                 Optional<User> optional = userRepository.findByUsername(username);
-                if(optional.isEmpty()){
-                    throw new BaseException(new ErrorMessage(username,MessageType.USERNAME_NOT_FOUND));
+                if(optional.isEmpty()) {
+                    throw new BaseException(new ErrorMessage(username ,MessageType.USERNAME_NOT_FOUND));
                 }
                 return optional.get();
             }
@@ -37,25 +42,23 @@ public class AppConfig {
     }
 
     @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+    public DaoAuthenticationProvider daoAuthenticationProvider() {
+        DaoAuthenticationProvider provider  = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userDetailsService());
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration){
-        try {
-            return configuration.getAuthenticationManager();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+        return configuration.getAuthenticationManager();
     }
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+
 
 }
