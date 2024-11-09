@@ -11,6 +11,7 @@ public enum MessageType {
     USERNAMR_OR_PASSWORD_INVALID("1007","Username or password is invalid"),
     REFRESH_TOKEN_NOT_FOUND("1008","Refresh token bulunamadı"),
     REFRESH_TOKEN_EXPIRED("1009","Refresh token expired"),
+    CURRENY_RATES_IS_OCCURED("1010","Doviz kuru alinamadi"),
     GENERAL_EXCEPTION("9999","Genel bir hata oluştu");
 
     private String code;

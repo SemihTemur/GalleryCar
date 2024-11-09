@@ -5,9 +5,14 @@ import com.semih.dto.response.AddressResponse;
 import com.semih.dto.response.GalleristResponse;
 import com.semih.entity.Address;
 import com.semih.entity.Gallerist;
+import com.semih.exception.BaseException;
+import com.semih.exception.ErrorMessage;
+import com.semih.exception.MessageType;
 import com.semih.repository.GalleristRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class GalleristService {
@@ -39,6 +44,14 @@ public class GalleristService {
 
         return galleristResponse;
 
+    }
+
+    public Gallerist getGalleristById(Long id) {
+        Optional<Gallerist> gallerist = galleristRepository.findById(id);
+        if (gallerist.isPresent()) {
+            return gallerist.get();
+        }
+        throw new BaseException(new ErrorMessage(id.toString(), MessageType.NO_RECORD_EXIST));
     }
 
 }

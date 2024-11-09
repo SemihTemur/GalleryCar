@@ -1,6 +1,6 @@
 package com.semih.dto.request;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,9 +8,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RefreshTokenRequest {
+public class GalleristCarRequest {
 
-    @NotBlank
-    private String refreshToken;
+    @NotNull
+    private Long galleristId;
+
+    @NotNull
+    private Long carId;
 
 }
