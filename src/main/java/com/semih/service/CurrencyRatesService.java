@@ -31,6 +31,7 @@ public class CurrencyRatesService {
         HttpEntity<?> httpEntity = new HttpEntity<>(httpHeaders);
 
         try {
+            // bunun sayesınde dış servislere istek atarak veri cekebılıyoruz
             RestTemplate restTemplate = new RestTemplate();
 
             // İsteği gönderme
@@ -45,7 +46,7 @@ public class CurrencyRatesService {
                 return response.getBody();
             }
         } catch (Exception e) {
-            throw new BaseException(new ErrorMessage(e.getMessage(),MessageType.CURRENY_RATES_IS_OCCURED));
+            throw new BaseException(new ErrorMessage(e.getMessage(),MessageType.CURRENCY_RATES_ERROR));
         }
         return null;  // Başarısız durumda null döndürme
     }

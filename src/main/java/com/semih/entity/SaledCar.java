@@ -1,9 +1,6 @@
 package com.semih.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,13 +14,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SaledCar extends BaseEntity{
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     private Gallerist gallerist;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     private Car car;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     private Customer customer;
 
 }

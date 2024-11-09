@@ -44,7 +44,7 @@ public class CustomerService {
         return customer;
     }
 
-    private Customer getCustomerById(Long id) {
+    public Customer getCustomerById(Long id) {
         Optional<Customer> customer = customerRepository.findById(id);
         if (customer.isPresent()) {
             return customer.get();

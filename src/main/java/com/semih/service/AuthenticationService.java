@@ -83,7 +83,7 @@ public class AuthenticationService {
 
             return new AuthResponse(accessToken,saveRefreshToken.getRefreshToken());
         } catch(Exception e){
-            throw new BaseException(new ErrorMessage(e.getMessage(), MessageType.USERNAMR_OR_PASSWORD_INVALID));
+            throw new BaseException(new ErrorMessage(e.getMessage(), MessageType.USERNAME_OR_PASSWORD_INVALID));
         }
 
     }
